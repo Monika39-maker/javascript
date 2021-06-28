@@ -1,0 +1,101 @@
+header {
+  display: flex;
+  flex-direction: row;
+  align-items: space-between;
+  justify-content: space-between;
+}
+
+.fav-foods {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.fav-meal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  width: 80px;
+}
+.cross {
+  position: absolute;
+  right: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.fav-meal:hover .cross {
+  opacity: 1;
+}
+
+.fav-meal span {
+  background: yellow;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+  width: 80px;
+}
+
+.fav-meal span:hover {
+  overflow: visible;
+}
+
+.fav-meal img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.random-food {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  background-image: linear-gradient(315deg, #a40606 0%, #d98324 74%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 5% 5%;
+}
+.random-food img {
+  width: 50%;
+}
+
+.like {
+  color: purple;
+}
+.pointer {
+  cursor: pointer;
+}
+
+.cooking-info {
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  height: auto;
+  width: 80%;
+  margin: 3% 10%;
+  background: rgb(255, 246, 246);
+  padding: 2%;
+}
+.cooking-info-img {
+  width: 100%;
+}
+#close-food-info {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 20px;
+  margin-right: 1%;
+  cursor: pointer;
+  pointer-events: none;
+}
+
+.hidden {
+  opacity: 0;
+}
