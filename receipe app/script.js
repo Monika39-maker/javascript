@@ -14,8 +14,8 @@ async function fetchMealByRandom() {
     const randomMealData = await response.json();
     const randomMeal = randomMealData.meals[0]
     
-
-    loadRandomMeal(randomMeal, random = true)
+    console.log(randomMeal)
+    loadRandomMeal(randomMeal, random=true)
 
 }
 
@@ -42,12 +42,12 @@ async function fetchMealByTerm(term) {
 }
 
 
-function loadRandomMeal(mealData, Random){
+function loadRandomMeal(mealData, random){
     const randomMeal = document.createElement('div');
     randomMeal.classList.add("random-food");
-    randomMeal.innerHTML = 
-    //  `${Random? `<h6>Random food</h6>` : ''}
-    `<img src="${mealData.strMealThumb}" alt="${mealData.strMeal}">
+    randomMeal.innerHTML = `
+     ${random? `<h6>Random food</h6>` : ''}
+    <img src="${mealData.strMealThumb}" alt="${mealData.strMeal}">
     <div>
         <span>${mealData.strMeal}</span>
         <span class="pointer" id="heart"><i class="fa fa-heart"></i></span>
@@ -82,7 +82,9 @@ async function addFavMeal() {
         
         meal = await fetchMealById(mealId);
         
-        loadFavMeal(meal)
+        loadFavMeal(meal);
+        
+        loadMealInfo(meal);
         
         
     }
@@ -105,16 +107,23 @@ function loadFavMeal(mealData) {
     const btn = favFood.querySelector('#cross');
     
     btn.addEventListener("click", () => {
-        console.log('clicked')
-        removeMealFromLS(mealData.idMeal)
         
-        console.log(mealData.idMeal)
+        removeMealFromLS(mealData.idMeal);
         
         addFavMeal()
+    });
+    favFood.addEventListener("click", () => {
+        cookingMethod.classList.remove('hidden')
+        loadMealInfo(mealData)
     })
+
     
 
-}
+    
+};
+
+
+
 
 function loadMealBySearch() {
     const searchBtn = document.getElementById("search-btn")
@@ -162,17 +171,16 @@ function getMealFromLS() {
 
 
 
-function popupMealInfo() {
-    favMealEl.addEventListener("click", () => {
-        cookingMethod.classList.remove('hidden')
-        loadMealInfo(meal)
-    })
 
-    
-}
 
 function loadMealInfo(mealData) {
-    console.log(mealData)
+    const ingredients = []
+    for(let i=0; i<20; i++) {
+        if(mealData['strIngredient'+i]) {
+            ingredients.push(`${mealData['strIngredient'+i]}/${mealData[`strMeasure`+i]}`)
+        } 
+    }
+    console.log(ingredients)
     const cookingInfo = document.createElement('div');
     cookingInfo.classList.add('cooking-info');
     cookingInfo.innerHTML = `
@@ -180,16 +188,17 @@ function loadMealInfo(mealData) {
         <span id="close-food-info"><i class="far fa-times-circle"></i></span>
       
         <img src="${mealData.strMealThumb}" alt="${mealData.strMeal}" class="cooking-info-img">
-        ${ingredients.map(ingredient => {
-            <ul>
-           <li>ingredriant/ <small>measure 3gm</small></li>
-           <li>ingedriant1/ <small>measure 3gm</small></li>
-           <li>ingedriant1/ <small>measure 3gm</small></li>
-           <li>ingedriant1/ <small>measure 3gm</small></li>
-          
-       </ul>
-        })}
-       
+        <h3>Ingredients: </h3>
+        <ul>
+            ${ ingredients.map((ing) => {
+                    `<li>${ing}</li>`.join()
+                })
+            }
+
+        </ul>
+        
+        
+       <h3>Cooking Method</h3>
        <p>${mealData.strInstructions}</p>`
        
        
@@ -198,14 +207,8 @@ function loadMealInfo(mealData) {
     const closeFoodInfo = document.getElementById("close-food-info");
     
     closeFoodInfo.addEventListener("click", () => {
-        cookingMethod.classList.add('hidden')
+        alert("./")
     })
-    const ingredients = []
-    for(let i=0; i<20; i++) {
-        if(mealData['strIngredient'+i]) {
-            ingredients.push(mealData['strIngredient'+i])
-        } 
-    }
-    console.log(ingredients)
-}
-popupMealInfo()
+    
+};
+
