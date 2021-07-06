@@ -14,7 +14,7 @@ async function fetchMealByRandom() {
     const randomMealData = await response.json();
     const randomMeal = randomMealData.meals[0]
     
-    console.log(randomMeal)
+    
     loadRandomMeal(randomMeal, random=true)
 
 }
@@ -84,7 +84,8 @@ async function addFavMeal() {
         
         loadFavMeal(meal);
         
-        loadMealInfo(meal);
+        
+       
         
         
     }
@@ -113,14 +114,17 @@ function loadFavMeal(mealData) {
         addFavMeal()
     });
     favFood.addEventListener("click", () => {
+        
         cookingMethod.classList.remove('hidden')
         loadMealInfo(mealData)
+        
     })
 
     
 
     
 };
+
 
 
 
@@ -174,40 +178,43 @@ function getMealFromLS() {
 
 
 function loadMealInfo(mealData) {
+    cookingMethod.innerHTML=" "
     const ingredients = []
     for(let i=0; i<20; i++) {
         if(mealData['strIngredient'+i]) {
             ingredients.push(`${mealData['strIngredient'+i]}/${mealData[`strMeasure`+i]}`)
         } 
     }
-    console.log(ingredients)
+    
     const cookingInfo = document.createElement('div');
     cookingInfo.classList.add('cooking-info');
     cookingInfo.innerHTML = `
-        <h5>${mealData.strMeal}</h5>
-        <span id="close-food-info"><i class="far fa-times-circle"></i></span>
+       
+    <h5>${mealData.strMeal}</h5>
+        <span id="close-food-info" class="close-info"><i class="far fa-times-circle"></i></span>
       
         <img src="${mealData.strMealThumb}" alt="${mealData.strMeal}" class="cooking-info-img">
         <h3>Ingredients: </h3>
         <ul>
-            ${ ingredients.map((ing) => {
-                    `<li>${ing}</li>`.join()
-                })
-            }
+
+            ${ingredients.map((ing) => `<li>${ing}</li>`).join('')}      
+        
+            
 
         </ul>
         
         
-       <h3>Cooking Method</h3>
-       <p>${mealData.strInstructions}</p>`
+        <h3>Cooking Method</h3>
+        <p>${mealData.strInstructions}</p>
+       `
        
        
     cookingMethod.appendChild(cookingInfo);
 
-    const closeFoodInfo = document.getElementById("close-food-info");
+    const closeFoodInfo = cookingInfo.querySelector(".close-info");
     
     closeFoodInfo.addEventListener("click", () => {
-        alert("./")
+        cookingMethod.classList.add('hidden')
     })
     
 };
