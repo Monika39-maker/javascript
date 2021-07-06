@@ -2,6 +2,23 @@ body {
   background: sandybrown;
 }
 
+.container {
+  width: 50%;
+}
 .tools {
   background: seagreen;
+  width: 100%;
+}
+.text textarea {
+  width: 100%;
+}
+.tools button {
+  position: relative;
+  right: 0;
+}
+.add {
+  position: absolute;
+  right: 5px;
+  background: seagreen;
+  cursor: pointer;
 }
