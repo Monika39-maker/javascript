@@ -1,24 +1,39 @@
 body {
   background: sandybrown;
 }
-
-.container {
+#main {
   width: 50%;
 }
 .tools {
+  width: 100%;
   background: seagreen;
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.text {
+  width: 400px;
+  background: cornsilk;
+  height: 400px;
+}
+textarea {
   width: 100%;
+
+  background: cadetblue;
 }
-.text textarea {
-  width: 100%;
-}
-.tools button {
-  position: relative;
-  right: 0;
-}
-.add {
+
+#add {
   position: absolute;
   right: 5px;
   background: seagreen;
+  cursor: pointer;
+}
+.hidden {
+  display: none;
+}
+button {
   cursor: pointer;
 }
