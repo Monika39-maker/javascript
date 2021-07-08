@@ -1,7 +1,7 @@
 body {
   background: sandybrown;
 }
-#main {
+.main {
   width: 50%;
 }
 .tools {
@@ -14,15 +14,15 @@ body {
   align-items: center;
 }
 
-.text {
-  width: 400px;
-  background: cornsilk;
+.text-area {
+  width: 100%;
+  background: cadetblue;
   height: 400px;
 }
 textarea {
   width: 100%;
-
-  background: cadetblue;
+  background: cornsilk;
+  height: 400px;
 }
 
 #add {

@@ -1,15 +1,8 @@
-const editBtn= document.getElementById('edit');
-
-const textArea= document.getElementById('text-area');
 const addBtn = document.getElementById('add');
-const editArea = document.getElementById('edit-area');
-const mainEl = document.getElementById('main')
 
-// editBtn.addEventListener("input", (e) => {
-//     textArea.classList.toggle('hidden');
-//     editArea.classList.toggle('hidden')
-    
-// })
+const mainEl = document.querySelector('.main')
+
+
 
 addBtn.addEventListener("click", () => {
     
@@ -21,17 +14,35 @@ function addNewNote() {
     const newDiv = document.createElement('div');
     newDiv.classList.add('container')
     mainEl.innerHTML = `<div class="tools">
-            <button id="edit"><i class="fas fa-edit"></i></button>
-            <button id="delete" class="delete"><i class="fas fa-trash"></i></button>
+            <button class="edit"><i class="fas fa-edit"></i></button>
+            <button class="delete"><i class="fas fa-trash"></i></button>
         </div>
-        <div class="text hidden" id="edit-area"></div>
-        <textarea name="" id="text-area" cols="30" rows="10"></textarea>`
+        <div class="text-area hidden" ></div>
+        <textarea class="edit-area" cols="30" rows="10"></textarea>`
 
     mainEl.appendChild(newDiv);
-    const deleteBtn = newDiv.querySelector('.delete');
-    deleteBtn.addEventListener("click", () => {
-        alert("alert")
-        
+    
+    const textarea = mainEl.querySelector('.text-area');
+    const editArea = mainEl.querySelector('.edit-area')
+    const editBtn = mainEl.querySelector('.edit');
+    const removeBtn = mainEl.querySelector('.delete')
+    editBtn.addEventListener("click", () => {
+        textarea.classList.toggle('hidden');
+        editArea.classList.toggle('hidden')
     })
+    
+    removeBtn.addEventListener("click", () => {
+        mainEl.remove()
+    })
+
+    editArea.addEventListener("input", (e) => {
+        const {value} = e.target;
+        textarea.innerHTML = marked(value)
+        console.log(value)
+
+    })
+
+
+
 }
 
