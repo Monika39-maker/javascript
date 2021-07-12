@@ -3,6 +3,7 @@ body {
 }
 .main {
   width: 50%;
+  margin-bottom: 15%;
 }
 .tools {
   width: 100%;
@@ -17,12 +18,14 @@ body {
 .text-area {
   width: 100%;
   background: cadetblue;
-  height: 400px;
+  height: 100px;
+  margin-bottom: 5%;
+  margin-top: 0;
 }
 textarea {
   width: 100%;
   background: cornsilk;
-  height: 400px;
+  height: 100px;
 }
 
 #add {
