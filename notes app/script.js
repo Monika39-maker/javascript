@@ -1,15 +1,15 @@
 const addBtn = document.getElementById('add');
-
-
-
 const mainEl = document.querySelector('.main');
 
+localStorage.getItem(JSON.parse("notes"))
 
 
 addBtn.addEventListener("click", () => {
     addNewNote();
     
 });
+
+addNewNote()
 
 function addNewNote() {
     
@@ -30,7 +30,8 @@ function addNewNote() {
     const removeBtn = newDiv.querySelector('.delete')
     editBtn.addEventListener("click", () => {
         textarea.classList.toggle('hidden');
-        editArea.classList.toggle('hidden')
+        editArea.classList.toggle('hidden');
+        
     })
     
     removeBtn.addEventListener("click", () => {
@@ -43,8 +44,15 @@ function addNewNote() {
         
 
     })
-
     
+    const noteEls = document.querySelectorAll('.edit-area');
+    const notes = []
+    noteEls.forEach((noteEl) => {notes.push(noteEl.value)})
+    console.log(notes)
+
+    localStorage.setItem("notes", JSON.stringify(notes))
 
 }
+
+
 
