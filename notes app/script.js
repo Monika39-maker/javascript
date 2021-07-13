@@ -1,7 +1,8 @@
 const addBtn = document.getElementById('add');
 const mainEl = document.querySelector('.main');
 
-localStorage.getItem(JSON.parse("notes"))
+const texts =  localStorage.getItem("notes");
+console.log(texts)
 
 
 addBtn.addEventListener("click", () => {
@@ -9,9 +10,9 @@ addBtn.addEventListener("click", () => {
     
 });
 
-addNewNote()
 
-function addNewNote() {
+
+function addNewNote( text = " ") {
     
     const newDiv = document.createElement('div');
     newDiv.classList.add('container')
@@ -20,7 +21,7 @@ function addNewNote() {
             <button class="delete"><i class="fas fa-trash"></i></button>
         </div>
         <div class="text-area hidden" ></div>
-        <textarea class="edit-area" cols="30" rows="10"></textarea>`
+        <textarea class="edit-area" cols="30" rows="10" value= ${text? text: " "}></textarea>`
 
     mainEl.appendChild(newDiv);
     
@@ -48,7 +49,7 @@ function addNewNote() {
     const noteEls = document.querySelectorAll('.edit-area');
     const notes = []
     noteEls.forEach((noteEl) => {notes.push(noteEl.value)})
-    console.log(notes)
+    
 
     localStorage.setItem("notes", JSON.stringify(notes))
 
