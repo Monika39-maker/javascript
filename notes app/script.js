@@ -30,9 +30,9 @@ function addNewNote(text=" ") {
             <button class="edit"><i class="fas fa-edit"></i></button>
             <button class="delete"><i class="fas fa-trash"></i></button>
         </div>
-        <div class="text-area hidden }" ></div>
+        <div class="text-area ${text ? 'hidden' : ''}" ></div>
     
-        <textarea class="edit-area " cols="30" rows="10" value="hello"></textarea>`
+        <textarea class="edit-area ${text ? '' : 'hidden'}" cols="30" rows="10"></textarea>`
         
     
     
@@ -47,6 +47,14 @@ function addNewNote(text=" ") {
     editBtn.addEventListener("click", () => {
         textarea.classList.toggle('hidden');
         editArea.classList.toggle('hidden');
+
+        editArea.addEventListener("input", (e) => {
+        const {value} = e.target;
+        textarea.innerHTML = marked(value)
+        updateLS()
+        
+
+    })
         
     })
     
@@ -55,13 +63,7 @@ function addNewNote(text=" ") {
         updateLS()
     })
 
-    editArea.addEventListener("input", (e) => {
-        const {value} = e.target;
-        textarea.innerHTML = marked(value)
-        updateLS()
-        
-
-    })
+    
     
     mainEl.appendChild(newDiv);
 
