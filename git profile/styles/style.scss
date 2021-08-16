@@ -54,11 +54,20 @@ input {
         @include flexCenter(column, center);
 
         ul {
-            @include flexCenter(column, space-evenly )
+            @include flexCenter(column, space-evenly );
+
         }
         li {
             list-style: none;
+
+            a {
+                color: blanchedalmond;
+                text-decoration: none;
+            }
+
+
         }
     }
+
 }
 /*# sourceMappingURL=style.css.map */

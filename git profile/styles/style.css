@@ -135,4 +135,9 @@ input::placeholder {
 .card .pop li {
   list-style: none;
 }
+
+.card .pop li a {
+  color: blanchedalmond;
+  text-decoration: none;
+}
 /*# sourceMappingURL=style.css.map */
