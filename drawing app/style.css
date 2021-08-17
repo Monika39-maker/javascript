@@ -1,11 +1,28 @@
 canvas {
-    height: 500px;
-    width: 500px;
+
     border: 2px solid black;
 }
 body {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+}
+button {
+    border: 1px solid black;
+}
+.tool-box{
+    background-color: rebeccapurple;
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    padding: 2px;
+    margin: 2%;
+    align-items: space-evenly;
+    justify-content: space-around;
+}
+span {
+    color: seashell;
+    text-align: center;
 }
