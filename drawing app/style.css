@@ -12,10 +12,10 @@ body {
 button {
     border: 1px solid black;
 }
-.tool-box{
+.tool-box {
     background-color: rebeccapurple;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     width: 25%;
     padding: 2px;
     margin: 2%;
