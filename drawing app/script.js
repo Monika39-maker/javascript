@@ -7,7 +7,6 @@ const ctx = canvas.getContext('2d')
 
 
 var isPressed = false;
-
 canvas.addEventListener('mousemove', (e) => {
     canvas.addEventListener('mousedown', (e) => {
         isPressed = true
