@@ -3,31 +3,34 @@ const sizeText = document.getElementById('size-text');
 const plusBtn = document.getElementById('plus-btn')
 const minusBtn = document.getElementById('minus-btn');
 const input = document.getElementById('color-input')
-const ctx = canvas.getContext('2d')
+const clearBtn = document.getElementById('clear')
+const ctx = canvas.getContext('2d');
 
 
+var color = 'green'
 var isPressed = false;
-canvas.addEventListener('mousemove', (e) => {
-    canvas.addEventListener('mousedown', (e) => {
-        isPressed = true
-        const x1 = e.offsetX
-        const y1 = e.offsetY
-        console.log(x1, y1)
-    })
+
+var x1 = undefined;
+var y1 = undefined;
+
+canvas.addEventListener('mousedown', (e) => {
+    isPressed = true;
+    x1 = e.offsetX;
+    y1 = e.offsetY;
+})
 
 canvas.addEventListener('mouseup', () => {
-        isPressed=false;
-        const x2 = undefined
-        const y2 = undefined
-    });
-
+    isPressed=false;
+    x1 = undefined;
+    y1 = undefined;
+})
+canvas.addEventListener('mousemove', (e) => {
     if (isPressed) {
-        x2 = e.offsetX;
-        y2 = e.offsetY;
-        console.log(x2, y2)
-        x1 = x2;
-        y1 = y2;
+        const x2 = e.offsetX
+        const y2 = e.offsetY
         drawLine(x1, y1, x2, y2);
+        x1 = x2;
+        y1 = y2
     }
     
 
@@ -35,18 +38,14 @@ canvas.addEventListener('mouseup', () => {
 var size = 10
 
 
-
-
-
 function drawLine(x1, y1, x2, y2) {
     ctx.beginPath();
-    ctx.moveTo(x1, y1, size, 0, 2*Math.PI);
-    ctx.lineTo(x2, y2, size, 0, 2*Math.PI);
-    input.addEventListener('change', (e) => {
-        ctx.strokeStyle = e.target.value;
-
+    ctx.moveTo(x1 , y1);
+    ctx.lineTo(x2, y2)
+    input.addEventListener('change' , (e) => {
+        ctx.strokeStyle = e.target.value
     })
-    
+    ctx.lineWidth = size*0.25
     ctx.stroke();
 };
 
@@ -60,4 +59,8 @@ plusBtn.addEventListener('click', () => {
 minusBtn.addEventListener('click', () => {
     size = size-5;
     sizeText.innerText = size
-})
+});
+
+clearBtn.addEventListener('click', () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+});
