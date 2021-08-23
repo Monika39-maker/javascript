@@ -3,43 +3,51 @@ const sizeText = document.getElementById('size-text');
 const plusBtn = document.getElementById('plus-btn')
 const minusBtn = document.getElementById('minus-btn');
 const input = document.getElementById('color-input')
-const ctx = canvas.getContext('2d')
+const clearBtn = document.getElementById('clear')
+const ctx = canvas.getContext('2d');
 
 
+var color = 'green'
 var isPressed = false;
-canvas.addEventListener('mousedown', () => {
-    isPressed = true
+var x1 = undefined;
+var y1 = undefined;
+
+canvas.addEventListener('mousedown', (e) => {
+    isPressed = true;
+    x1 = e.offsetX;
+    y1 = e.offsetY;
 })
 
 canvas.addEventListener('mouseup', () => {
-    isPressed=false
+    isPressed=false;
+    x1 = undefined;
+    y1 = undefined;
 })
 canvas.addEventListener('mousemove', (e) => {
     if (isPressed) {
-        const x = e.offsetX
-        const y = e.offsetY
-        draw(x, y)
+        const x2 = e.offsetX
+        const y2 = e.offsetY
+        drawLine(x1, y1, x2, y2);
+        x1 = x2;
+        y1 = y2
+
     }
 
 })
 var size = 10
-var color = input.target.value;
-console.log(color)
 
 
-function draw(x, y) {
+function drawLine(x1, y1, x2, y2) {
     ctx.beginPath();
-    ctx.arc(x, y, size, 0, 2*Math.PI);
+    ctx.moveTo(x1 , y1);
+    ctx.lineTo(x2, y2)
+    input.addEventListener('change' , (e) => {
+        ctx.strokeStyle = e.target.value
+    })
+    ctx.lineWidth = size*0.25
     ctx.stroke();
-    ctx.strokeStyle = color;
 };
 
-function line(x1, y1, x2, y2) {
-    ctx.beginPath();
-    ctx.arc(x, y, size, 0, 2*Math.PI);
-    ctx.stroke();
-    ctx.strokeStyle = color;
-}
 
 plusBtn.addEventListener('click', () => {
     size = size+5;
@@ -50,4 +58,8 @@ plusBtn.addEventListener('click', () => {
 minusBtn.addEventListener('click', () => {
     size = size-5;
     sizeText.innerText = size
-})
+});
+
+clearBtn.addEventListener('click', () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+});
