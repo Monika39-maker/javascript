@@ -18,23 +18,27 @@
                 <input type="text">
             </div>
             <div class="pw-body">
-                <div>
+                <div class="input-part"> 
                     <label for="length">Length of password</label>
                     <input type="text" name="length" id="length-input">
                 </div>
-                <div>
+                <div class="input-part">
                     <label for="upper">Upper Case Letters</label>
                     <input type="checkbox" name="upper" id="upperCase-input">
                 </div>
-                <div>
+                <div class="input-part">
                     <label for="lower">Lower Case Letters</label>
                     <input type="checkbox" name="lower" id="lowerCase-input">
                 </div>
-                <div>
+                <div class="input-part">
+                    <label for="lower">Numbers</label>
+                    <input type="checkbox" name="number" id="number-input">
+                </div>
+                <div class="input-part">
                     <label for="char">Characters</label>
                     <input type="checkbox" name="char" id="char-input">
                 </div> 
-                <button type="submit">Generate</button> 
+                <button type="submit" id="submit">Generate</button> 
             </div>
         </div>
         <script src="script.js"></script>
