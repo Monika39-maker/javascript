@@ -3,60 +3,82 @@ const upperCaseEl  = document.getElementById('upperCase-input')
 const lowerCaseEl  = document.getElementById('lowerCase-input');
 const numberEl = document.getElementById('number-input');
 const charEl = document.getElementById('char-input');
-const submitEl = document.getElementById('submit')
+const submitEl = document.getElementById('submit');
+const passwordEl = document.getElementById('password-input');
+const copyEl = document.getElementById('copy')
 
 const upperCase  = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 const lowerCase  = 'abcdefghijklmnopqrstuvwxyz'
 const number  = '0123456789'
-const char = '!@£$%&?'
+const char = '!@£$%&?';
 
-console.log(Math.floor(Math.random() * number.length));
-console.log(Math.floor(Math.random() * upperCase.length))
-
-function creatRandomNumber() {
-    return Math.floor(Math.random() * number.length)
+function createRandomNumber() {
+    return number[Math.floor(Math.random() * number.length)]
 };
 
 function createRandomUpperCase() {
-    return Math.floor(Math.random() * upperCase.length)
+    return upperCase[Math.floor(Math.random() * upperCase.length)]
 };
 
 function createRandomLowerCase() {
-    return Math.floor(Math.random() * lowerCase.length)
+    return lowerCase[Math.floor(Math.random() * lowerCase.length)]
 }
-function createRandomNumber() {
-    return Math.floor(Math.random() * number.length)
-}
+
 function createRandomChar() {
-    return Math.floor(Math.random() * char.length)
+    return char[Math.floor(Math.random() * char.length)]
 }
 
 
 submitEl.addEventListener('click', generatePassword)
 
 function generatePassword() {
-    let len = lengthEl.value;
-    let pw = ''
+    const len = lengthEl.value;
+    // let x = generateX()
+    let password = ''
     for (let i=0; i<len; i++) {
-        if (upperCaseEl.checked) {
-            const upperLetter = createRandomUpperCase()
-            pw += upperLetter
-        }
-        if (lowerCaseEl.checked) {
-            const lowerLetter = createRandomLowerCase()
-            pw += lowerLetter
-        }
-        if (numberEl.checked) {
-            const num = createRandomNumber()
-            pw += num
-        }
-        if (charEl.checked) {
-            const char = createRandomChar()
-            pw += char
-        }
-        alert(pw)
+        password += generateX()
     }
+    passwordEl.value = password
+
+    
 
 }
+
+function generateX() {
+    let pw = []
+    if (upperCaseEl.checked) {
+        const upperLetter = createRandomUpperCase()
+        pw.push(upperLetter)
+    
+    }
+    if (lowerCaseEl.checked) {
+        const lowerLetter = createRandomLowerCase()
+        pw.push(lowerLetter)
+    }
+    if (numberEl.checked) {
+        const num = createRandomNumber()
+        pw.push(num)
+    }
+    if (charEl.checked) {
+        const char = createRandomChar()
+        pw.push(char)
+    }
+    if (pw.length == 0) {
+        return ''
+    }
+
+    return pw[Math.floor(Math.random() * pw.length)]
+    
+}
+copyEl.addEventListener('click', () => {
+    const textArea = document.createElement('textarea');
+    textArea.value = passwordEl.value;
+    document.body.appendChild(textArea)
+    textArea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textArea);
+    alert('password copied');
+    passwordEl.value=''
+})
     
 
