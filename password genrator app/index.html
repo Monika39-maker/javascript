@@ -12,12 +12,14 @@
         <title>Document</title>
     </head>
 
-    <body>
+    <body style='background:rgb(59, 59, 136);'>
         <div class="box">
             <div class="pw-heading">
-                <input type="text">
+                <input type="text" id="password-input">
+                <span id='copy'><i class="far fa-copy" style='font-size: 30px; color: white'></i></span>
+                
             </div>
-            <div class="pw-body">
+            <div class="pw-body" id="pw-body">
                 <div class="input-part"> 
                     <label for="length">Length of password</label>
                     <input type="text" name="length" id="length-input">
