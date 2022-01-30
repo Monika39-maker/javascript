@@ -1,0 +1,11 @@
+#wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    width: 400px;
+    background: gray;
+}
+.image-card {
+    margin: 10px;
+    border: 1px ridge;
+    cursor: pointer;
+}

@@ -1,0 +1,28 @@
+body {
+    background: gray
+}
+.container {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    width: 90vw;
+    height: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    
+
+}
+
+div {
+    height: 20vw;
+    width: 20vw;
+    background: white;
+    border: 2px solid black
+}
+.mole {
+    /* background: violet; */
+    background-image: url('mole.jpeg');
+    background-size: cover;
+}
